@@ -2,7 +2,6 @@ import PromptSync from "prompt-sync";
 
 const prompt = PromptSync();
 
-let running = true;
 
 function mainMenu() {
     console.log("== Main Menu==")
@@ -54,12 +53,14 @@ function numberEvenOdd() {
 }
 
 function square() {
-    for (let i = 1; i <= 1; i++) {
-        const n6 = prompt("Calculate the square of:");
-        let number = 5;
-        let square = number ** 2;
-        console.log(square)
+    const n6 = prompt("Calculate the square of:");
+    const number = parseInt(n6); // Convert the input string to a number
+    if (isNaN(number)) {
+        console.log("Invalid input. Please enter a number.");
+        return;
     }
+    let square = number ** 2;
+    console.log(`The square of ${number} is ${square}`);
 }
 
 function repeatPhrase() {
@@ -87,91 +88,70 @@ function Exit() {
     console.log('See you later');
 }
 
+let running = true;
+while (running) {
+    mainMenu(); // Show the menu each time
+    const choice = prompt("Enter a Number to choose an action");
 
-while (true) {
-    const number = prompt("Enter a Number to choose an action");
-    const hasDigit = /[0-9]/.test(number);
-
-    if (hasDigit) {
-        console.log("");
-        break;
-    } else {
-        console.log("Access denied")
-    }
-
-    switch (number) {
+    switch (choice)
+{
 
         case "1":
             greetME();
             break;
-        case (i = 1): {
-            console.log(output1);
-        }
+       
 
+        
         case "2":
             tellJoke();
             break;
-        case (i = 2): {
-            console.log(output2);
-        }
+        
+
 
         case "3":
             showTime();
             break;
-        case (i = 3): {
-            console.log(output3);
-        }
+
+    
 
         case "4":
             reverseWord();
             break;
-        case (i = 4): {
-            console.log(output4);
-        }
+        
+
 
         case "5":
             numberEvenOdd();
             break;
-        case (i = 5): {
-            console.log(output5);
-        }
+        
+
 
         case "6":
             square();
             break;
-        case (i = 6): {
-            console.log(output6);
-        }
+       
 
         case "7":
             repeatPhrase();
             break;
-        case (i = 7): {
-            console.log(output7);
-        }
+       
 
         case "8":
             convertCelsiustoFahrenheit();
             break;
-        case (i = 8): {
-            console.log(output8);
-        }
+        
 
         case "9":
             simplecountdown();
             break;
-             case(i = 9): {
-         console.log(output9);
-         }
+        
 
         case "10":
             Exit();
+             running = false; // Set running to false to exit the loop
             break;
-             case(i = 10): {
-         console.log(output10);
-         }
-
+          
          default:
-      console.log("Invalid choice. Please choose a number between 1 and 10.");
+            console.log("Invalid choice. Please enter a number from 1 to 10.");
         }
 }
